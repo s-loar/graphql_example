@@ -12,12 +12,26 @@ module Types
       User.all
     end
 
+    # Get all movies
+    field :movies, [Types::MovieType], null: false
+    def movies
+      Movie.all
+    end
+
     # Get a specific user
     field :user, Types::UserType, null: false do
       argument :id, ID, required: true
     end
     def user(id:)
       User.find(id)
+    end
+
+    # Get a specific movie
+    field :movie, Types::MovieType, null: false do
+      argument :id, ID, required: true
+    end
+    def movie(id:)
+      Movie.find(id)
     end
   end
 end
