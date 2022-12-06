@@ -1,24 +1,47 @@
-# README
+# GraphQL Example Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Getting experience with graphql
 
-Things you may want to cover:
+## Some examples for GraphiQL
 
-* Ruby version
+### Query to get all users
+query {
+  users {
+    firstName
+    lastName
+    email
+    moviesCount
+  }
+}
 
-* System dependencies
+### Query to get one user
+query {
+  user(id: 1) {
+    firstName
+    lastName
+    email
+    moviesCount
+    movies {
+      title
+      year
+      genre
+    }
+  }
+}
 
-* Configuration
+### Mutation to add data
+mutation {
+  createUser(input: {
+    firstName: "Peter",
+    lastName: "Parker",
+    email: "spiderman@mail.com"
+  }) {
+    user {
+      id
+      firstName
+      email
+    }
+    errors
+  }
+}
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
