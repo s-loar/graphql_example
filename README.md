@@ -14,6 +14,16 @@ query {
   }
 }
 
+### Query to get all movies
+query {
+  movies {
+    id
+    title
+    year
+    genre
+  }
+}
+
 ### Query to get one user
 query {
   user(id: 1) {
@@ -29,7 +39,22 @@ query {
   }
 }
 
-### Mutation to add data
+### Query to get one movie
+query {
+  movie(id: 11) {
+    title
+    year
+    genre
+    user {
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+}
+
+### Mutation to add user
 mutation {
   createUser(input: {
     firstName: "Peter",
@@ -45,3 +70,20 @@ mutation {
   }
 }
 
+### Mutation to add movie
+mutation {
+  createMovie(input: {
+    title: "Morbius", 
+    year: 2021, 
+    genre: "Sci-fi", 
+    userId: 11
+  }) {
+    movie {
+      id
+      title
+      year
+      genre
+    }
+    errors
+  }
+}
