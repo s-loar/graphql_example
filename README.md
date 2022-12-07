@@ -16,7 +16,7 @@ query {
 
 ### Query to get all movies
 query {
-  movies {
+  allMovies {
     id
     title
     year
@@ -51,6 +51,16 @@ query {
       firstName
       lastName
     }
+  }
+}
+
+### Query to get movie by partial title
+query {
+  movie_search(title_contains: "mor") 
+	{
+    title
+    year
+    genre
   }
 }
 

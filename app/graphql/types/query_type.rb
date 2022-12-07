@@ -1,6 +1,5 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
@@ -13,10 +12,19 @@ module Types
     end
 
     # Get all movies
-    field :movies, [Types::MovieType], null: false
-    def movies
+    field :allMovies, [Types::MovieType], null: false 
+    def allMovies
       Movie.all
     end
+
+    # field :movie_search, [Types::MovieType], null: false do 
+    #   puts "*** argument - #{argument.inspect}"
+    #   argument :title_contains, String, required: true
+    # end
+    # def movieSearch(title_contains:)
+    #   puts "*** title_contains - #{title_contains.inspect}"
+    #   Movie.where("title LIKE ?", "%" + title_contains + "%" )
+    # end
 
     # Get a specific user
     field :user, Types::UserType, null: false do
